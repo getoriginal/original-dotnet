@@ -22,11 +22,6 @@ namespace OriginalSDK
 
     public OriginalClient(string? apiKey = null, string? apiSecret = null, OriginalOptions? options = null)
     {
-      if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(apiSecret))
-      {
-        throw new ArgumentException("API key and secret are required.");
-      }
-
       apiKey ??= System.Environment.GetEnvironmentVariable("ORIGINAL_API_KEY");
       apiSecret ??= System.Environment.GetEnvironmentVariable("ORIGINAL_API_SECRET");
 
@@ -57,12 +52,11 @@ namespace OriginalSDK
       }
       else
       {
-        baseUrl = options?.Environment == Environment.Development ? DEVELOPMENT_URL : PRODUCTION_URL;
+        baseUrl = options?.Environment == OriginalEnvironment.Development ? DEVELOPMENT_URL : PRODUCTION_URL;
       }
       return baseUrl;
     }
 
-    // Helper method to send requests
     private async Task<ApiResponse<T>> SendRequestAsync<T>(Func<Task<HttpResponseMessage>> requestFunc)
     {
       var token = _tokenManager.GenerateToken();
