@@ -19,7 +19,6 @@ namespace OriginalSDK
       }
     }
 
-    // Method to generate JWT token
     public string GenerateToken()
     {
       var payload = new[]
