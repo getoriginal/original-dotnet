@@ -52,7 +52,7 @@ namespace OriginalSDK
       }
       else
       {
-        baseUrl = options?.Environment == Environment.Development ? DEVELOPMENT_URL : PRODUCTION_URL;
+        baseUrl = options?.Environment == OriginalEnvironment.Development ? DEVELOPMENT_URL : PRODUCTION_URL;
       }
       return baseUrl;
     }
