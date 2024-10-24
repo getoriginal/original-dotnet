@@ -37,4 +37,4 @@ Thumbs.db
 _ReSharper*/
 
 # Environment
-*.env
+.env
