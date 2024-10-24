@@ -28,4 +28,4 @@ jobs:
         run: dotnet build OriginalSDK.sln --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test OriginalSDK.sln --no-build --verbosity normal
+        run: dotnet test OriginalSDK.sln --verbosity normal
