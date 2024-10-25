@@ -1,32 +1,29 @@
 using Newtonsoft.Json;
 
-namespace OriginalSDK.Models
+namespace OriginalSDK.Entities
 {
-  public class ClaimParams
+  public class TransferParams
   {
+    [JsonProperty("asset_uid")]
+    public required string AssetUid { get; set; }
+
     [JsonProperty("from_user_uid")]
     public required string FromUserUid { get; set; }
-
-    [JsonProperty("reward_uid")]
-    public required string RewardUid { get; set; }
 
     [JsonProperty("to_address")]
     public required string ToAddress { get; set; }
   }
 
-  public class Claim
+  public class Transfer
   {
-    [JsonProperty("amount")]
-    public decimal Amount { get; set; }
+    [JsonProperty("asset_uid")]
+    public required string AssetUid { get; set; }
 
     [JsonProperty("created_at")]
     public required string CreatedAt { get; set; }
 
     [JsonProperty("from_user_uid")]
     public required string FromUserUid { get; set; }
-
-    [JsonProperty("reward_uid")]
-    public required string RewardUid { get; set; }
 
     [JsonProperty("status")]
     public required string Status { get; set; }

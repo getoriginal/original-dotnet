@@ -1,6 +1,6 @@
 using System.Text;
 using Newtonsoft.Json;
-using OriginalSDK.Models;
+using OriginalSDK.Entities;
 
 namespace OriginalSDK
 {

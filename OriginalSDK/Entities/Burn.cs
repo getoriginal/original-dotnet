@@ -1,20 +1,17 @@
 using Newtonsoft.Json;
 
-namespace OriginalSDK.Models
+namespace OriginalSDK.Entities
 {
-  public class TransferParams
+  public class BurnParams
   {
     [JsonProperty("asset_uid")]
     public required string AssetUid { get; set; }
 
     [JsonProperty("from_user_uid")]
     public required string FromUserUid { get; set; }
-
-    [JsonProperty("to_address")]
-    public required string ToAddress { get; set; }
   }
 
-  public class Transfer
+  public class Burn
   {
     [JsonProperty("asset_uid")]
     public required string AssetUid { get; set; }
@@ -27,9 +24,6 @@ namespace OriginalSDK.Models
 
     [JsonProperty("status")]
     public required string Status { get; set; }
-
-    [JsonProperty("to_address")]
-    public required string ToAddress { get; set; }
 
     [JsonProperty("uid")]
     public required string Uid { get; set; }
