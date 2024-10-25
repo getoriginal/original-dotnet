@@ -17,8 +17,8 @@ class Program
     // await TestGetUserByEmailAsync(client);
     // await TestGetUserByUserExternalIdAsync(client);
 
-    // // Collection
-    // await TestGetCollectionAsync(client);
+    // Collection
+    await TestGetCollectionAsync(client);
 
     // // Asset
     // await TestCreateAssetAsync(client);
