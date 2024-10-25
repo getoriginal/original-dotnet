@@ -31,31 +31,31 @@ class Program
     Console.WriteLine($"contractAddress {col.Data.ContractAddress}");
     Console.WriteLine($"symbol {col.Data.Symbol}");
 
-    var assetResponse = await client.CreateAssetAsync(new AssetParams
-    {
-      UserUid = "364718224260",
-      CollectionUid = "940830618348",
-      AssetExternalId = "AssetExternalId",
-      SalePriceInUsd = (decimal)1.0,
-      Data = new AssetData
-      {
-        Name = "Asset Name",
-        Description = "Asset Description",
-        ExternalUrl = "https://example.com",
-        ImageUrl = "https://example.com/image.jpg",
-        Attributes = new List<AssetAttribute>
-        {
-          new AssetAttribute
-          {
-            TraitType = "Trait Type",
-            Value = "Value",
-            DisplayType = "Display Type"
-          }
-        }
-      }
-    });
+    // var assetResponse = await client.CreateAssetAsync(new AssetParams
+    // {
+    //   UserUid = "364718224260",
+    //   CollectionUid = "940830618348",
+    //   AssetExternalId = "AssetExternalId",
+    //   SalePriceInUsd = (decimal)1.0,
+    //   Data = new AssetData
+    //   {
+    //     Name = "Asset Name",
+    //     Description = "Asset Description",
+    //     ExternalUrl = "https://example.com",
+    //     ImageUrl = "https://example.com/image.jpg",
+    //     Attributes = new List<AssetAttribute>
+    //     {
+    //       new AssetAttribute
+    //       {
+    //         TraitType = "Trait Type",
+    //         Value = "Value",
+    //         DisplayType = "Display Type"
+    //       }
+    //     }
+    //   }
+    // });
 
-    Console.WriteLine($"assetUid {assetResponse.Data.Uid}");
+    // Console.WriteLine($"assetUid {assetResponse.Data.Uid}");
 
   }
 }
