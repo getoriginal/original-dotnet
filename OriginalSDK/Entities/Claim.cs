@@ -1,23 +1,20 @@
 using Newtonsoft.Json;
 
-namespace OriginalSDK.Models
+namespace OriginalSDK.Entities
 {
-  public class AllocationParams
+  public class ClaimParams
   {
-    [JsonProperty("amount")]
-    public decimal Amount { get; set; }
-
-    [JsonProperty("nonce")]
-    public required string Nonce { get; set; }
+    [JsonProperty("from_user_uid")]
+    public required string FromUserUid { get; set; }
 
     [JsonProperty("reward_uid")]
     public required string RewardUid { get; set; }
 
-    [JsonProperty("to_user_uid")]
-    public required string ToUserUid { get; set; }
+    [JsonProperty("to_address")]
+    public required string ToAddress { get; set; }
   }
 
-  public class Allocation
+  public class Claim
   {
     [JsonProperty("amount")]
     public decimal Amount { get; set; }
@@ -25,8 +22,8 @@ namespace OriginalSDK.Models
     [JsonProperty("created_at")]
     public required string CreatedAt { get; set; }
 
-    [JsonProperty("nonce")]
-    public required string Nonce { get; set; }
+    [JsonProperty("from_user_uid")]
+    public required string FromUserUid { get; set; }
 
     [JsonProperty("reward_uid")]
     public required string RewardUid { get; set; }
@@ -34,8 +31,8 @@ namespace OriginalSDK.Models
     [JsonProperty("status")]
     public required string Status { get; set; }
 
-    [JsonProperty("to_user_uid")]
-    public required string ToUserUid { get; set; }
+    [JsonProperty("to_address")]
+    public required string ToAddress { get; set; }
 
     [JsonProperty("uid")]
     public required string Uid { get; set; }

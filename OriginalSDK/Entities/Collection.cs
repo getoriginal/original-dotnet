@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace OriginalSDK.Models
+namespace OriginalSDK.Entities
 {
   public class Collection
   {

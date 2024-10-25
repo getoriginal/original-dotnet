@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace OriginalSDK.Models
+namespace OriginalSDK.Entities
 {
   public class Reward
   {
@@ -33,6 +33,15 @@ namespace OriginalSDK.Models
 
     [JsonProperty("withdraw_receiver")]
     public required string WithdrawReceiver { get; set; }
+
+    [JsonProperty("chain")]
+    public required string Chain { get; set; }
+
+    [JsonProperty("network")]
+    public required string Network { get; set; }
+
+    [JsonProperty("chain_id")]
+    public int? ChainId { get; set; }
   }
 
 }

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace OriginalSDK.Models
+namespace OriginalSDK.Entities
 {
   public class AssetAttribute
   {
@@ -82,7 +82,7 @@ namespace OriginalSDK.Models
   public class Asset
   {
     [JsonProperty("asset_external_id")]
-    public string? AssetExternalId { get; set; }
+    public required string AssetExternalId { get; set; }
 
     [JsonProperty("collection_name")]
     public required string CollectionName { get; set; }
