@@ -1,6 +1,6 @@
-# SDKTestApp
+# OriginalSDK.TestApp
 
-This console application (`SDKTestApp`) is used to demonstrate and test the functionality of the `OriginalSDK` library.
+This console application (`OriginalSDK.TestApp`) is used to demonstrate and test the functionality of the `OriginalSDK` library.
 
 ## Prerequisites
 
@@ -16,11 +16,11 @@ This console application (`SDKTestApp`) is used to demonstrate and test the func
   cd original-dotnet
 ```
 
-2. **Run the SDKTestApp**:
+2. **Run the OriginalSDK.TestApp**:
    Press F5 or go to Run > Start Debugging / Run Without Debugging
 
 or from a terminal, run:
 
 ```bash
-  dotnet run --project SDKTestApp/SDKTestApp.csproj
+  dotnet run --project OriginalSDK.TestApp/OriginalSDK.TestApp.csproj
 ```
