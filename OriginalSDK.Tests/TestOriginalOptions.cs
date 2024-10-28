@@ -1,6 +1,8 @@
+using OriginalSDK.Tests.Helpers;
+
 namespace OriginalSDK.Tests
 {
-  public class TestOriginalOptions
+  public class TestOriginalOptions : TestBase
   {
     [Fact]
     public void DefaultEnvironment_ShouldBeProduction()

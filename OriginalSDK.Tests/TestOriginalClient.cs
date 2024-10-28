@@ -3,10 +3,11 @@ using Moq;
 using Moq.Protected;
 using Newtonsoft.Json;
 using OriginalSDK.Entities;
+using OriginalSDK.Tests.Helpers;
 
 namespace OriginalSDK.Tests
 {
-  public class TestOriginalClient
+  public class TestOriginalClient : TestBase
   {
     private readonly Mock<HttpMessageHandler> _httpMessageHandlerMock;
     private readonly OriginalClient _client;
