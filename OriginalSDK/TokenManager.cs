@@ -17,6 +17,10 @@ namespace OriginalSDK
       {
         throw new ArgumentException("API secret must be provided.");
       }
+      if (apiSecret.Length < 32)
+      {
+        throw new ArgumentException("The provided secret must be at least 256 bits (32 characters) long.");
+      }
     }
 
     public string GenerateToken()

@@ -31,7 +31,7 @@ namespace OriginalSDK
       _httpClient.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
     }
 
-    private static string GetBaseUrl(OriginalOptions? options)
+    protected string GetBaseUrl(OriginalOptions? options)
     {
       string baseUrl;
       if (options?.BaseUrl != null)

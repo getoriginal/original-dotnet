@@ -4,6 +4,10 @@ namespace OriginalSDK
 {
   public class OriginalClient : BaseClient
   {
+    public OriginalClient(string? apiKey = null, string? apiSecret = null, OriginalOptions? options = null) :
+      base(apiKey, apiSecret, options)
+    { }
+
     /// <summary>
     /// Creates a new user.
     /// </summary>
