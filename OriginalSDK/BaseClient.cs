@@ -55,9 +55,24 @@ namespace OriginalSDK
       _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
       var response = await requestFunc();
-      response.EnsureSuccessStatusCode();
-
       var responseData = await response.Content.ReadAsStringAsync();
+
+      if (!response.IsSuccessStatusCode)
+      {
+        var errorData = null as OriginalErrorData;
+        var errorMessage = "Unknown error occurred";
+        try
+        {
+          errorData = JsonConvert.DeserializeObject<OriginalErrorData>(responseData);
+          errorMessage = errorData?.Error?.GetMessage() ?? "Unknown error occurred";
+        }
+        catch (JsonReaderException)
+        {
+          Console.WriteLine("Failed to parse original error data.");
+        }
+        ErrorUtils.ParseAndRaiseError(errorData, errorMessage, (int)response.StatusCode);
+      }
+
       var result = JsonConvert.DeserializeObject<ApiResponse<T>>(responseData);
       if (result == null)
       {
