@@ -1,4 +1,4 @@
-name: Build OriginalSDK and OriginalSDK.Tests.ConsoleApp
+name: Build SDK and Tests
 
 on:
   push:
