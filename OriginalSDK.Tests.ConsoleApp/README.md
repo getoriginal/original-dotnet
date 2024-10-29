@@ -1,4 +1,4 @@
-# OriginalSDK.TestApp
+# OriginalSDK.Tests.ConsoleApp
 
 This console application (`OriginalSDK.Tests.ConsoleApp`) is used to demonstrate and test the functionality of the `OriginalSDK` library.
 
@@ -16,7 +16,7 @@ This console application (`OriginalSDK.Tests.ConsoleApp`) is used to demonstrate
   cd original-dotnet
 ```
 
-2. **Run the OriginalSDK.TestApp**:
+2. **Run the OriginalSDK.Tests.ConsoleApp**:
    Press F5 or go to Run > Start Debugging / Run Without Debugging
 
 or from a terminal, run:
