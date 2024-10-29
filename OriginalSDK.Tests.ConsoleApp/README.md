@@ -1,6 +1,6 @@
 # OriginalSDK.TestApp
 
-This console application (`OriginalSDK.TestApp`) is used to demonstrate and test the functionality of the `OriginalSDK` library.
+This console application (`OriginalSDK.Tests.ConsoleApp`) is used to demonstrate and test the functionality of the `OriginalSDK` library.
 
 ## Prerequisites
 
@@ -22,5 +22,5 @@ This console application (`OriginalSDK.TestApp`) is used to demonstrate and test
 or from a terminal, run:
 
 ```bash
-  dotnet run --project OriginalSDK.TestApp/OriginalSDK.TestApp.csproj
+  dotnet run --project OriginalSDK.Tests.ConsoleApp/OriginalSDK.Tests.ConsoleApp.csproj
 ```

@@ -3,10 +3,10 @@ using Moq;
 using Moq.Protected;
 using Newtonsoft.Json;
 using OriginalSDK.Entities;
-using OriginalSDK.Tests.Helpers;
+using OriginalSDK.Tests.Unit.Helpers;
 
 
-namespace OriginalSDK.Tests
+namespace OriginalSDK.Tests.Unit
 {
   public class TestBaseClient : TestBase
   {

@@ -9,7 +9,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/OriginalSDK.TestApp/bin/Debug/net7.0/OriginalSDK.TestApp.dll",
+      "program": "${workspaceFolder}/OriginalSDK.Tests.ConsoleApp/bin/Debug/net7.0/OriginalSDK.Tests.ConsoleApp.dll",
       "args": [],
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",

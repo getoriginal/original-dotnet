@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginalSDK", "OriginalSDK\OriginalSDK.csproj", "{58194259-6552-4543-A858-A043730E18E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginalSDK.TestApp", "OriginalSDK.TestApp\OriginalSDK.TestApp.csproj", "{FD687ED9-BFB0-496C-A51E-4CE0CF593B26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginalSDK.Tests.ConsoleApp", "OriginalSDK.Tests.ConsoleApp\OriginalSDK.Tests.ConsoleApp.csproj", "{FD687ED9-BFB0-496C-A51E-4CE0CF593B26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginalSDK.Tests", "OriginalSDK.Tests\OriginalSDK.Tests.csproj", "{F2C39C92-327B-4528-8FA0-59084CC46203}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginalSDK.Tests.Unit", "OriginalSDK.Tests.Unit\OriginalSDK.Tests.Unit.csproj", "{F2C39C92-327B-4528-8FA0-59084CC46203}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

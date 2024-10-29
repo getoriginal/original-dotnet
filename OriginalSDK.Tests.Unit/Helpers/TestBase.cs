@@ -1,4 +1,4 @@
-namespace OriginalSDK.Tests.Helpers
+namespace OriginalSDK.Tests.Unit.Helpers
 {
   public abstract class TestBase
   {

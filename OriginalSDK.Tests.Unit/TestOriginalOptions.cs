@@ -1,6 +1,6 @@
-using OriginalSDK.Tests.Helpers;
+using OriginalSDK.Tests.Unit.Helpers;
 
-namespace OriginalSDK.Tests
+namespace OriginalSDK.Tests.Unit
 {
   public class TestOriginalOptions : TestBase
   {

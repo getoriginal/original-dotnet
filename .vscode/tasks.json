@@ -14,7 +14,7 @@
         "kind": "build",
         "isDefault": true
       },
-      "detail": "Build both OriginalSDK and OriginalSDK.TestApp projects"
+      "detail": "Build both OriginalSDK and OriginalSDK.Tests.ConsoleApp projects"
     }
   ]
 }
