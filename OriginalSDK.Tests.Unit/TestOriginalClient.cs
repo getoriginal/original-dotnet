@@ -43,21 +43,78 @@ namespace OriginalSDK.Tests.Unit
     }
 
     [Fact]
-    public async Task HttpRequestException_IsThrownForNotFound()
+    public async Task ClientException_IsThrownForClientError()
     {
-      var userUid = "nonexistent_uid";
-      SetupMockResponse($"user/{userUid}", "{}", HttpStatusCode.NotFound);
+      var originalErrorData = new OriginalErrorData
+      {
+        Error = new Error
+        {
+          Type = OriginalErrorCode.ClientError,
+          Detail = new ErrorDetail
+          {
+            Message = "A client error occurred",
+            Code = "error_code",
+            FieldName = null
+          }
+        }
+      };
 
-      await Assert.ThrowsAsync<HttpRequestException>(() => _client.GetUserAsync(userUid));
+      string errorJson = JsonConvert.SerializeObject(originalErrorData);
+
+      var userUid = "nonexistent_uid";
+      SetupMockResponse($"user/{userUid}", errorJson, HttpStatusCode.BadRequest);
+
+      await Assert.ThrowsAsync<ClientException>(() => _client.GetUserAsync(userUid));
     }
 
     [Fact]
-    public async Task HttpRequestException_IsThrownForBadRequest()
+    public async Task ServerException_IsThrownForServerError()
     {
-      var userUid = "nonexistent_uid";
-      SetupMockResponse($"user/{userUid}", "{}", HttpStatusCode.BadRequest);
+      var originalErrorData = new OriginalErrorData
+      {
+        Error = new Error
+        {
+          Type = OriginalErrorCode.ServerError,
+          Detail = new ErrorDetail
+          {
+            Message = "A server error occurred",
+            Code = "error_code",
+            FieldName = null
+          }
+        }
+      };
 
-      await Assert.ThrowsAsync<HttpRequestException>(() => _client.GetUserAsync(userUid));
+      string errorJson = JsonConvert.SerializeObject(originalErrorData);
+
+      var userUid = "nonexistent_uid";
+      SetupMockResponse($"user/{userUid}", errorJson, HttpStatusCode.BadRequest);
+
+      await Assert.ThrowsAsync<ServerException>(() => _client.GetUserAsync(userUid));
+    }
+
+    [Fact]
+    public async Task ValidationException_IsThrownForValidationError()
+    {
+      var originalErrorData = new OriginalErrorData
+      {
+        Error = new Error
+        {
+          Type = OriginalErrorCode.ValidationError,
+          Detail = new ErrorDetail
+          {
+            Message = "A validation error occurred",
+            Code = "error_code",
+            FieldName = null
+          }
+        }
+      };
+
+      string errorJson = JsonConvert.SerializeObject(originalErrorData);
+
+      var userUid = "nonexistent_uid";
+      SetupMockResponse($"user/{userUid}", errorJson, HttpStatusCode.BadRequest);
+
+      await Assert.ThrowsAsync<ValidationException>(() => _client.GetUserAsync(userUid));
     }
 
     [Fact]
@@ -66,7 +123,7 @@ namespace OriginalSDK.Tests.Unit
       var userUid = "nonexistent_uid";
       SetupMockResponse($"user/{userUid}", "{}", HttpStatusCode.Forbidden);
 
-      await Assert.ThrowsAsync<HttpRequestException>(() => _client.GetUserAsync(userUid));
+      await Assert.ThrowsAsync<ClientException>(() => _client.GetUserAsync(userUid));
     }
 
     [Fact]

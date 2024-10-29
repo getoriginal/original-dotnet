@@ -113,7 +113,7 @@ namespace OriginalSDK.Tests.Unit
             Content = new StringContent("Bad Request")
           });
 
-      await Assert.ThrowsAsync<HttpRequestException>(() => _client.GetAsync<string>("test-endpoint"));
+      await Assert.ThrowsAsync<ClientException>(() => _client.GetAsync<string>("test-endpoint"));
     }
 
     [Fact]

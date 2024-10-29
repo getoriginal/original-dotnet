@@ -1,5 +1,4 @@
-﻿using OriginalSDK;
-using OriginalSDK.Entities;
+﻿using OriginalSDK.Entities;
 
 namespace OriginalSDK.Tests.ConsoleApp
 {
@@ -11,53 +10,68 @@ namespace OriginalSDK.Tests.ConsoleApp
 
       var client = new OriginalClient();
 
-      // Uncomment the methods you want to test
+      try
+      {
+        // Uncomment the methods you want to test
 
-      // User
-      // await TestCreateUserAsync(client);
-      // await TestGetUserAsync(client);
-      // await TestGetUserByEmailAsync(client);
-      // await TestGetUserByUserExternalIdAsync(client);
+        // User
+        // await TestCreateUserAsync(client);
+        // await TestGetUserAsync(client);
+        // await TestGetUserByEmailAsync(client);
+        // await TestGetUserByUserExternalIdAsync(client);
 
-      // Collection
-      await TestGetCollectionAsync(client);
+        // Collection
+        await TestGetCollectionAsync(client);
 
-      // // Asset
-      // await TestCreateAssetAsync(client);
-      // await TestGetAssetAsync(client);
-      // await TestGetAssetsByUserUidAsync(client);
+        // // Asset
+        // await TestCreateAssetAsync(client);
+        // await TestGetAssetAsync(client);
+        // await TestGetAssetsByUserUidAsync(client);
 
-      // // Edit
-      // await TestEditAssetAsync(client);
+        // // Edit
+        // await TestEditAssetAsync(client);
 
-      // // Transfer
-      // await TestCreateTransferAsync(client);
-      // await TestGetTransferAsync(client);
-      // await TestGetTransfersByUserUidAsync(client);
+        // // Transfer
+        // await TestCreateTransferAsync(client);
+        // await TestGetTransferAsync(client);
+        // await TestGetTransfersByUserUidAsync(client);
 
-      // // Burn
-      // await TestCreateBurnAsync(client);
-      // await TestGetBurnAsync(client);
-      // await TestGetBurnsByUserUidAsync(client);
+        // // Burn
+        // await TestCreateBurnAsync(client);
+        // await TestGetBurnAsync(client);
+        // await TestGetBurnsByUserUidAsync(client);
 
-      // // Deposit
-      // await TestGetDepositAsync(client);
+        // // Deposit
+        // await TestGetDepositAsync(client);
 
-      // // Reward
-      // await TestGetRewardAsync(client);
+        // // Reward
+        // await TestGetRewardAsync(client);
 
-      // // Allocation
-      // await TestCreateAllocationAsync(client);
-      // await TestGetAllocationAsync(client);
-      // await TestGetAllocationsByUserUidAsync(client);
+        // // Allocation
+        // await TestCreateAllocationAsync(client);
+        // await TestGetAllocationAsync(client);
+        // await TestGetAllocationsByUserUidAsync(client);
 
-      // // Claim
-      // await TestCreateClaimAsync(client);
-      // await TestGetClaimAsync(client);
-      // await TestGetClaimsByUserUidAsync(client);
+        // // Claim
+        // await TestCreateClaimAsync(client);
+        // await TestGetClaimAsync(client);
+        // await TestGetClaimsByUserUidAsync(client);
 
-      // // Balance
-      // await TestGetBalanceAsync(client);
+        // // Balance
+        // await TestGetBalanceAsync(client);
+      }
+      catch (ClientException clientException)
+      {
+        Console.WriteLine(clientException.Message);
+      }
+      catch (ServerException serverException)
+      {
+        Console.WriteLine(serverException.Message);
+      }
+      catch (ValidationException validationException)
+      {
+        Console.WriteLine(validationException.Message);
+      }
     }
 
     static void LoadEnvironmentVariables()
