@@ -1,4 +1,4 @@
-name: Build SDK and Tests
+name: Build SDK and E2E Tests
 
 on:
   push:
@@ -12,6 +12,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      ORIGINAL_API_KEY: ${{ secrets.ORIGINAL_API_KEY }}
+      ORIGINAL_API_SECRET: ${{ secrets.ORIGINAL_API_SECRET }}
+      ORIGINAL_BASE_URL: ${{ secrets.ORIGINAL_BASE_URL }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -24,8 +29,5 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore OriginalSDK.sln
 
-      - name: Build the solution
-        run: dotnet build OriginalSDK.sln --configuration Release --no-restore
-
-      - name: Run tests
-        run: dotnet test OriginalSDK.sln --verbosity normal
+      - name: Run e2e tests
+        run: dotnet test OriginalSDK.Tests.E2E --verbosity normal

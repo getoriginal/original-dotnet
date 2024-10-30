@@ -11,7 +11,7 @@ namespace OriginalSDK.Entities
     public required string RewardUid { get; set; }
 
     [JsonProperty("amount")]
-    public decimal Amount { get; set; }
+    public double Amount { get; set; }
 
   }
 }

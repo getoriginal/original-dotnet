@@ -17,7 +17,7 @@ namespace OriginalSDK.Entities
   public class Claim
   {
     [JsonProperty("amount")]
-    public decimal Amount { get; set; }
+    public double? Amount { get; set; }
 
     [JsonProperty("created_at")]
     public required string CreatedAt { get; set; }

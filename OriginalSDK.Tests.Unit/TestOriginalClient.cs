@@ -250,7 +250,7 @@ namespace OriginalSDK.Tests.Unit
         UserUid = "147980339890",
         CollectionUid = "940830618348",
         AssetExternalId = "asset_external_id",
-        SalePriceInUsd = 1.0m,
+        SalePriceInUsd = 1.0,
         Data = new AssetData
         {
           Name = "Test Asset",
@@ -497,7 +497,7 @@ namespace OriginalSDK.Tests.Unit
     {
       var allocationParams = new AllocationParams
       {
-        Amount = 0.1m,
+        Amount = 0.1,
         Nonce = "unique_nonce",
         RewardUid = "reward_uid_123",
         ToUserUid = "user_uid_456"
@@ -519,7 +519,7 @@ namespace OriginalSDK.Tests.Unit
       var expectedAllocation = new Allocation
       {
         Uid = allocationUid,
-        Amount = 0.1m,
+        Amount = 0.1,
         RewardUid = "reward_uid_123",
         ToUserUid = "user_uid_456",
         CreatedAt = DateTime.Now.ToString(),
@@ -546,7 +546,7 @@ namespace OriginalSDK.Tests.Unit
         new Allocation
         {
             Uid = "allocation_uid_1",
-            Amount = 0.1m,
+            Amount = 0.1,
             RewardUid = "reward_uid_123",
             ToUserUid = userUid,
             CreatedAt = DateTime.Now.ToString(),
@@ -556,7 +556,7 @@ namespace OriginalSDK.Tests.Unit
         new Allocation
         {
             Uid = "allocation_uid_2",
-            Amount = 0.2m,
+            Amount = 0.2,
             RewardUid = "reward_uid_456",
             ToUserUid = userUid,
             CreatedAt = DateTime.Now.ToString(),
@@ -600,7 +600,7 @@ namespace OriginalSDK.Tests.Unit
       var expectedClaim = new Claim
       {
         Uid = claimUid,
-        Amount = 50.0m,
+        Amount = 50.0,
         RewardUid = "reward_uid_123",
         FromUserUid = "from_user_uid_123",
         ToAddress = "0x1234567890abcdef",
@@ -627,7 +627,7 @@ namespace OriginalSDK.Tests.Unit
         new Claim
         {
             Uid = "claim_uid_1",
-            Amount = 50.0m,
+            Amount = 50.0,
             RewardUid = "reward_uid_123",
             FromUserUid = userUid,
             ToAddress = "0x1234567890abcdef",
@@ -637,7 +637,7 @@ namespace OriginalSDK.Tests.Unit
         new Claim
         {
             Uid = "claim_uid_2",
-            Amount = 75.0m,
+            Amount = 75.0,
             RewardUid = "reward_uid_456",
             FromUserUid = userUid,
             ToAddress = "0xabcdef1234567890",
@@ -665,7 +665,7 @@ namespace OriginalSDK.Tests.Unit
       {
         RewardUid = rewardUid,
         UserUid = userUid,
-        Amount = 100.0m
+        Amount = 100.0
       };
       var expectedResponse = new ApiResponse<Balance> { Data = expectedBalance, Success = true };
       SetupMockResponse($"reward/balance?reward_uid={rewardUid}&user_uid={userUid}", JsonConvert.SerializeObject(expectedResponse));
@@ -676,7 +676,7 @@ namespace OriginalSDK.Tests.Unit
       Assert.True(result.Success);
       Assert.Equal(rewardUid, result.Data.RewardUid);
       Assert.Equal(userUid, result.Data.UserUid);
-      Assert.Equal(100.0m, result.Data.Amount);
+      Assert.Equal(100.0, result.Data.Amount);
     }
   }
 }
