@@ -5,7 +5,7 @@ namespace OriginalSDK.Entities
   public class AllocationParams
   {
     [JsonProperty("amount")]
-    public decimal Amount { get; set; }
+    public double Amount { get; set; }
 
     [JsonProperty("nonce")]
     public required string Nonce { get; set; }
@@ -20,7 +20,7 @@ namespace OriginalSDK.Entities
   public class Allocation
   {
     [JsonProperty("amount")]
-    public decimal Amount { get; set; }
+    public double Amount { get; set; }
 
     [JsonProperty("created_at")]
     public required string CreatedAt { get; set; }

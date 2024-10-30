@@ -52,7 +52,7 @@ namespace OriginalSDK.Entities
     public required string UserUid { get; set; }
 
     [JsonProperty("sale_price_in_usd")]
-    public decimal? SalePriceInUsd { get; set; }
+    public double? SalePriceInUsd { get; set; }
   }
 
   public class AssetMetadata

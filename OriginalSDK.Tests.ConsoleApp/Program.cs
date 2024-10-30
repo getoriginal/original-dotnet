@@ -155,7 +155,7 @@ namespace OriginalSDK.Tests.ConsoleApp
         UserUid = "147980339890",
         CollectionUid = "940830618348",
         AssetExternalId = "asset_external_id",
-        SalePriceInUsd = 1.0m,
+        SalePriceInUsd = 1.0,
         Data = new AssetData
         {
           Name = "Asset Name",
@@ -373,7 +373,7 @@ namespace OriginalSDK.Tests.ConsoleApp
       var randomNonce = new Random().Next(100000, 999999);
       var allocationParams = new AllocationParams
       {
-        Amount = 0.1m,
+        Amount = 0.1,
         Nonce = $"{randomNonce}",
         RewardUid = "501676762240",
         ToUserUid = "654716880029"

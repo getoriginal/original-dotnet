@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginalSDK.Tests.ConsoleAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginalSDK.Tests.Unit", "OriginalSDK.Tests.Unit\OriginalSDK.Tests.Unit.csproj", "{F2C39C92-327B-4528-8FA0-59084CC46203}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OriginalSDK.Tests.E2E", "OriginalSDK.Tests.E2E\OriginalSDK.Tests.E2E.csproj", "{EEC91260-4CC4-4A4D-80EE-9F3B88999DB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{F2C39C92-327B-4528-8FA0-59084CC46203}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2C39C92-327B-4528-8FA0-59084CC46203}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2C39C92-327B-4528-8FA0-59084CC46203}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC91260-4CC4-4A4D-80EE-9F3B88999DB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC91260-4CC4-4A4D-80EE-9F3B88999DB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC91260-4CC4-4A4D-80EE-9F3B88999DB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC91260-4CC4-4A4D-80EE-9F3B88999DB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
