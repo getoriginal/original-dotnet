@@ -8,6 +8,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     {
       LoadEnvironmentVariables();
 
+      // Utilise environment variables
       var client = new OriginalClient();
 
       try
@@ -72,13 +73,17 @@ namespace OriginalSDK.Tests.ConsoleApp
       {
         Console.WriteLine(validationException.Message);
       }
+      catch (Exception exception)
+      {
+        Console.WriteLine(exception.Message);
+      }
     }
 
-    static void LoadEnvironmentVariables()
+    private static void LoadEnvironmentVariables()
     {
       var root = Directory.GetCurrentDirectory();
       var dotenv = Path.Combine(root, ".env");
-      DotNetEnv.Env.Load(dotenv);
+      DotNetEnv.Env.TraversePath().Load(dotenv);
     }
 
     static async Task TestCreateUserAsync(OriginalClient client)
