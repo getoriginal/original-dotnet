@@ -102,14 +102,14 @@ namespace OriginalSDK
     public const string ValidationError = "validation_error";
   }
 
-  public class OriginalError : Exception
+  public class OriginalException : Exception
   {
     new public string Message { get; private set; }
     public int Status { get; private set; }
     new public object Data { get; private set; }
     public string Code { get; private set; }
 
-    public OriginalError(string message, int status, OriginalErrorData data, string originalErrorCode)
+    public OriginalException(string message, int status, OriginalErrorData data, string originalErrorCode)
         : base(message)
     {
       Message = message;
@@ -121,19 +121,19 @@ namespace OriginalSDK
     public override string ToString() => $"{Message} - {Status} - {Code} - {Data}";
   }
 
-  public class ClientException : OriginalError
+  public class ClientException : OriginalException
   {
     public ClientException(string message, int status, OriginalErrorData data)
         : base(message, status, data, OriginalErrorCode.ClientError) { }
   }
 
-  public class ServerException : OriginalError
+  public class ServerException : OriginalException
   {
     public ServerException(string message, int status, OriginalErrorData data)
         : base(message, status, data, OriginalErrorCode.ServerError) { }
   }
 
-  public class ValidationException : OriginalError
+  public class ValidationException : OriginalException
   {
     public ValidationException(string message, int status, OriginalErrorData data)
         : base(message, status, data, OriginalErrorCode.ValidationError) { }
