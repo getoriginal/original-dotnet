@@ -45,7 +45,10 @@ namespace OriginalSDK.Tests.E2E
           allocation => allocation.Data.Status == "done",
           "Allocation");
 
-      // Step 3: Create Claim
+      // Step 3: Wait for No Claims in Progress
+      await WaitForNoClaimsInProgress();
+
+      // Step 4: Create Claim
       var claimData = new ClaimParams
       {
         RewardUid = _testRewardUid,
@@ -57,11 +60,29 @@ namespace OriginalSDK.Tests.E2E
       var claimUid = response.Data.Uid;
       Assert.NotNull(claimUid);
 
-      // Step 4: Wait for Claim to Complete
+      // Step 5: Wait for Claim to Complete
       await WaitForStatusChange(
           async () => await _client.GetClaimAsync(claimUid),
           claim => claim.Data.Status == "done",
           "Claim");
+    }
+
+    private async Task WaitForNoClaimsInProgress()
+    {
+      var retries = 0;
+      while (retries < _retryCounter)
+      {
+        var response = await _client.GetClaimsByUserUidAsync(_testUserUid);
+        if (response.Data.Count == 0)
+        {
+          return;
+        }
+
+        retries++;
+        await Task.Delay(TimeSpan.FromSeconds(15));
+      }
+
+      throw new TimeoutException("Claims are still in progress after the maximum retry limit.");
     }
 
     private async Task WaitForStatusChange<T>(Func<Task<ApiResponse<T>>> getStatusFunc, Func<ApiResponse<T>, bool> isDoneFunc, string actionName)
