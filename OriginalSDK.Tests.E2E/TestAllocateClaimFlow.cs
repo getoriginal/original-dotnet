@@ -69,35 +69,22 @@ namespace OriginalSDK.Tests.E2E
 
     private async Task WaitForNoClaimsInProgress()
     {
-      var retries = 0;
-      while (retries < _retryCounter)
+      for (var retries = 0; retries < _retryCounter; retries++)
       {
         var response = await _client.GetClaimsByUserUidAsync(_testUserUid);
-        if (response.Data.Count == 0)
+
+        // Exit if no claims have a "pending" status
+        if (response.Data.All(claim => claim.Status != "pending"))
         {
           return;
         }
 
-        var hasPendingClaims = false;
-        foreach (var claim in response.Data)
-        {
-          if (claim.Status == "pending")
-          {
-            hasPendingClaims = true;
-            break;
-          }
-        }
-        if (!hasPendingClaims)
-        {
-          return;
-        }
-
-        retries++;
         await Task.Delay(TimeSpan.FromSeconds(15));
       }
 
       throw new TimeoutException("Claims are still in progress after the maximum retry limit.");
     }
+
 
     private async Task WaitForStatusChange<T>(Func<Task<ApiResponse<T>>> getStatusFunc, Func<ApiResponse<T>, bool> isDoneFunc, string actionName)
     {
