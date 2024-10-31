@@ -10,6 +10,8 @@ namespace OriginalSDK.Tests.E2E
     private readonly string _testUserUid;
     private readonly string _testClaimUid;
     private readonly string _testClaimToAddress;
+    private readonly int _retryCounter;
+
 
     public TestClaim()
     {
@@ -22,11 +24,14 @@ namespace OriginalSDK.Tests.E2E
           ?? throw new InvalidOperationException("TEST_CLAIM_UID is not set");
       _testClaimToAddress = Environment.GetEnvironmentVariable("TEST_CLAIM_TO_ADDRESS")
           ?? throw new InvalidOperationException("TEST_CLAIM_TO_ADDRESS is not set");
+      _retryCounter = 20;
     }
 
     [Fact]
     public async Task CreateClaim_ReturnsUid()
     {
+      await WaitForNoClaimsInProgress();
+
       var claimParams = new ClaimParams
       {
         RewardUid = _testRewardUid,
@@ -65,6 +70,24 @@ namespace OriginalSDK.Tests.E2E
     {
       var response = await _client.GetClaimsByUserUidAsync("no_results");
       Assert.Empty(response.Data);
+    }
+
+    private async Task WaitForNoClaimsInProgress()
+    {
+      for (var retries = 0; retries < _retryCounter; retries++)
+      {
+        var response = await _client.GetClaimsByUserUidAsync(_testUserUid);
+
+        // Exit if no claims have a "pending" status
+        if (response.Data.All(claim => claim.Status != "pending"))
+        {
+          return;
+        }
+
+        await Task.Delay(TimeSpan.FromSeconds(15));
+      }
+
+      throw new TimeoutException("Claims are still in progress after the maximum retry limit.");
     }
   }
 }

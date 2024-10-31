@@ -1,0 +1,39 @@
+name: Publish SDK to NuGet
+
+on:
+  push:
+    tags:
+      - "v*" # Triggers the workflow when a new tag is pushed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: "7.0.x"
+
+      - name: Install GitVersion
+        run: dotnet tool install --global GitVersion.Tool
+
+      - name: Run GitVersion
+        run: gitversion /output buildserver
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build the project
+        run: dotnet build --configuration Release
+
+      - name: Pack the project
+        run: dotnet pack --configuration Release --output ./nupkg
+
+      - name: Publish to NuGet
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push "nupkg/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY

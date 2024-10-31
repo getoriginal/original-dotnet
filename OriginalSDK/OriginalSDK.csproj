@@ -5,11 +5,31 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Library</OutputType>
+
+    <!-- NuGet package metadata -->
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>OriginalSDK</PackageId>
+    <Version>0.0.1</Version> <!-- Update with versioning strategy -->
+    <Authors>Original</Authors>
+    <Company>Original</Company>
+    <Description>The official .NET SDK for the Original API.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/getoriginal/original-dotnet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Original;API;SDK</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <!-- Use GitVersioning for dynamic versioning -->
+    <Version Condition=" '$(GitVersion_NuGetVersionV2)' != '' ">$(GitVersion_NuGetVersionV2)</Version>
+    <AssemblyVersion Condition=" '$(GitVersion_AssemblySemVer)' != '' ">$(GitVersion_AssemblySemVer)</AssemblyVersion>
+    <FileVersion Condition=" '$(GitVersion_AssemblySemFileVer)' != '' ">$(GitVersion_AssemblySemFileVer)</FileVersion>
+
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.2" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
