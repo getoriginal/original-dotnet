@@ -188,7 +188,7 @@ namespace OriginalSDK.Tests.Unit
     }
 
     [Fact]
-    public void GetBaseUrl_ReturnsCorrectEnvUrl()
+    public void GetBaseUrl_ReturnsCorrectBaseUrl()
     {
       Environment.SetEnvironmentVariable("ORIGINAL_BASE_URL", "https://env-url.com/v1/");
       var options = new OriginalOptions();
@@ -196,6 +196,28 @@ namespace OriginalSDK.Tests.Unit
 
       Assert.Equal("https://env-url.com/v1/", result);
       Environment.SetEnvironmentVariable("ORIGINAL_BASE_URL", null);
+    }
+
+    [Fact]
+    public void GetBaseUrl_ReturnsCorrectDevEnvUrl()
+    {
+      Environment.SetEnvironmentVariable("ORIGINAL_ENVIRONMENT", OriginalConstants.DEVELOPMENT_ENVIRONMENT);
+      var options = new OriginalOptions();
+      var result = _client.GetBaseUrl(options);
+
+      Assert.Equal("https://api-dev.getoriginal.com/v1/", result);
+      Environment.SetEnvironmentVariable("ORIGINAL_ENVIRONMENT", null);
+    }
+
+    [Fact]
+    public void GetBaseUrl_ReturnsCorrectProdEnvUrl()
+    {
+      Environment.SetEnvironmentVariable("ORIGINAL_ENVIRONMENT", OriginalConstants.PRODUCTION_ENVIRONMENT);
+      var options = new OriginalOptions();
+      var result = _client.GetBaseUrl(options);
+
+      Assert.Equal("https://api.getoriginal.com/v1/", result);
+      Environment.SetEnvironmentVariable("ORIGINAL_ENVIRONMENT", null);
     }
   }
 }

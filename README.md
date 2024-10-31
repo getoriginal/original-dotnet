@@ -59,7 +59,11 @@ For development environments:
 ```csharp
 using OriginalSDK;
 
-var client = new OriginalClient("YOUR_DEV_APP_API_KEY", "YOUR_DEV_APP_SECRET", Environment.Development);
+var client = new OriginalClient(
+  apiKey: "YOUR_API_KEY",
+  apiSecret: "YOUR_API_SECRET",
+  options: new OriginalOptions { Environment = OriginalEnvironment.Development }
+);
 ```
 
 For production environments:
@@ -67,7 +71,29 @@ For production environments:
 ```csharp
 using OriginalSDK;
 
-var client = new OriginalClient("YOUR_PROD_APP_API_KEY", "YOUR_PROD_APP_SECRET");
+var client = new OriginalClient(
+  apiKey: "YOUR_API_KEY",
+  apiSecret: "YOUR_API_SECRET",
+  options: new OriginalOptions { Environment = OriginalEnvironment.Production }
+);
+```
+
+### Using environment variables
+
+You can also set environment variables which will be picked up by the SDK:
+
+```
+# .env file
+ORIGINAL_API_KEY=your_api_key_here
+ORIGINAL_API_SECRET=your_api_secret_here
+ORIGINAL_ENVIRONMENT=development #(or production)
+```
+
+`ORIGINAL_BASE_URL` can also be set, however this is not recommended and is for advanced/internal use cases only.
+
+```csharp
+// Utilises environment variables
+var client = new OriginalClient();
 ```
 
 ## User

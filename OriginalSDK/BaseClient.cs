@@ -42,6 +42,10 @@ namespace OriginalSDK
       {
         baseUrl = Environment.GetEnvironmentVariable("ORIGINAL_BASE_URL")!;
       }
+      else if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("ORIGINAL_ENVIRONMENT")))
+      {
+        baseUrl = Environment.GetEnvironmentVariable("ORIGINAL_ENVIRONMENT") == OriginalConstants.DEVELOPMENT_ENVIRONMENT ? DEVELOPMENT_URL : PRODUCTION_URL;
+      }
       else
       {
         baseUrl = options?.Environment == OriginalEnvironment.Development ? DEVELOPMENT_URL : PRODUCTION_URL;
