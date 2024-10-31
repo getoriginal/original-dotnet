@@ -78,7 +78,21 @@ namespace OriginalSDK.Tests.E2E
       while (retries < _retryCounter)
       {
         var response = await _client.GetClaimsByUserUidAsync(_testUserUid);
+
         if (response.Data.Count == 0)
+        {
+          return;
+        }
+        var hasPendingClaims = false;
+        foreach (var claim in response.Data)
+        {
+          if (claim.Status == "pending")
+          {
+            hasPendingClaims = true;
+            break;
+          }
+        }
+        if (!hasPendingClaims)
         {
           return;
         }

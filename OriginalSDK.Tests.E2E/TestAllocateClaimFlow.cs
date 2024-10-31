@@ -78,6 +78,20 @@ namespace OriginalSDK.Tests.E2E
           return;
         }
 
+        var hasPendingClaims = false;
+        foreach (var claim in response.Data)
+        {
+          if (claim.Status == "pending")
+          {
+            hasPendingClaims = true;
+            break;
+          }
+        }
+        if (!hasPendingClaims)
+        {
+          return;
+        }
+
         retries++;
         await Task.Delay(TimeSpan.FromSeconds(15));
       }
