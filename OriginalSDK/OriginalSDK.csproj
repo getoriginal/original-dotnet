@@ -19,9 +19,9 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <!-- Use GitVersioning for dynamic versioning -->
-    <Version Condition=" '$(GitVersion_NuGetVersionV2)' != '' ">$(GitVersion_NuGetVersionV2)</Version>
-    <AssemblyVersion Condition=" '$(GitVersion_AssemblySemVer)' != '' ">$(GitVersion_AssemblySemVer)</AssemblyVersion>
-    <FileVersion Condition=" '$(GitVersion_AssemblySemFileVer)' != '' ">$(GitVersion_AssemblySemFileVer)</FileVersion>
+    <Version>$(GitVersion_NuGetVersionV2)</Version>
+    <AssemblyVersion>$(GitVersion_AssemblySemVer)</AssemblyVersion>
+    <FileVersion>$(GitVersion_AssemblySemFileVer)</FileVersion>
 
     <!-- Icon metadata -->
     <PackageIcon>assets/icon.png</PackageIcon>
