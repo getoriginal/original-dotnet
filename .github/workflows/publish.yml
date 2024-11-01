@@ -38,11 +38,25 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: Build the project
-        run: dotnet build OriginalSDK/OriginalSDK.csproj --configuration Release
+      - name: Print version properties
+        run: |
+          echo "GitVersion_NuGetVersionV2: ${{ env.GitVersion_NuGetVersionV2 }}"
+          echo "GitVersion_AssemblySemVer: ${{ env.GitVersion_AssemblySemVer }}"
+          echo "GitVersion_AssemblySemFileVer: ${{ env.GitVersion_AssemblySemFileVer }}"
+
+      - name: Build the project with GitVersion values
+        run: |
+          dotnet build OriginalSDK/OriginalSDK.csproj --configuration Release \
+            /p:Version=${{ env.GitVersion_NuGetVersionV2 }} \
+            /p:AssemblyVersion=${{ env.GitVersion_AssemblySemVer }} \
+            /p:FileVersion=${{ env.GitVersion_AssemblySemFileVer }}
 
       - name: Pack the project
-        run: dotnet pack OriginalSDK/OriginalSDK.csproj --configuration Release --output ./nupkg
+        run:
+          dotnet pack OriginalSDK/OriginalSDK.csproj --configuration Release --output ./nupkg \
+          /p:Version=${{ env.GitVersion_NuGetVersionV2 }} \
+          /p:AssemblyVersion=${{ env.GitVersion_AssemblySemVer }} \
+          /p:FileVersion=${{ env.GitVersion_AssemblySemFileVer }}
 
       # - name: Publish to NuGet
       #   env:
