@@ -38,12 +38,12 @@ jobs:
         run: dotnet restore
 
       - name: Build the project
-        run: dotnet build --configuration Release
+        run: dotnet build OriginalSDK/OriginalSDK.csproj --configuration Release
 
       - name: Pack the project
-        run: dotnet pack --configuration Release --output ./nupkg
+        run: dotnet pack OriginalSDK/OriginalSDK.csproj --configuration Release --output ./nupkg
 
       - name: Publish to NuGet
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        run: dotnet nuget push "nupkg/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY
+        run: dotnet nuget push "nupkg/OriginalSDK.*.nupkg" --source https://api.nuget.org/v3/index.json --api-key $NUGET_API_KEY
