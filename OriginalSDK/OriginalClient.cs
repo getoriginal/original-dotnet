@@ -4,7 +4,7 @@ namespace OriginalSDK
 {
   public class OriginalClient : BaseClient
   {
-    public OriginalClient(string? apiKey = null, string? apiSecret = null, OriginalOptions? options = null) :
+    public OriginalClient(string apiKey = null, string apiSecret = null, OriginalOptions options = null) :
       base(apiKey, apiSecret, options)
     { }
 

@@ -5,6 +5,6 @@ namespace OriginalSDK.Entities
   public class UidResponse
   {
     [JsonProperty("uid")]
-    public required string Uid { get; set; }
+    public string Uid { get; set; }
   }
 }

@@ -15,6 +15,6 @@ namespace OriginalSDK
   public class OriginalOptions
   {
     public OriginalEnvironment Environment { get; set; } = OriginalEnvironment.Production;
-    public string? BaseUrl { get; set; }
+    public string BaseUrl { get; set; }
   }
 }

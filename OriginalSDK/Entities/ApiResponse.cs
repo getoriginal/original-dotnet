@@ -8,6 +8,6 @@ namespace OriginalSDK.Entities
     public bool Success { get; set; }
 
     [JsonProperty("data")]
-    public required T Data { get; set; }
+    public T Data { get; set; }
   }
 }

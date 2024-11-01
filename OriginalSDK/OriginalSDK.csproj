@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
     <OutputType>Library</OutputType>
 
     <!-- NuGet package metadata -->
@@ -24,12 +24,15 @@
     <AssemblyVersion Condition=" '$(GitVersion_AssemblySemVer)' != '' ">$(GitVersion_AssemblySemVer)</AssemblyVersion>
     <FileVersion Condition=" '$(GitVersion_AssemblySemFileVer)' != '' ">$(GitVersion_AssemblySemFileVer)</FileVersion>
 
+    <!-- Icon metadata -->
+    <PackageIcon>assets/icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.2" />
     <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include=".\assets\icon.png" Pack="true" PackagePath="\assets" />
   </ItemGroup>
 
 </Project>

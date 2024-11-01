@@ -9,7 +9,7 @@ namespace OriginalSDK.Tests.ConsoleApp
       LoadEnvironmentVariables();
 
       // Utilise environment variables
-      var client = new OriginalClient();
+      OriginalClient client = new OriginalClient();
 
       try
       {

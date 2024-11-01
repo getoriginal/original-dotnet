@@ -8,13 +8,13 @@ namespace OriginalSDK.Entities
     public double Amount { get; set; }
 
     [JsonProperty("nonce")]
-    public required string Nonce { get; set; }
+    public string Nonce { get; set; }
 
     [JsonProperty("reward_uid")]
-    public required string RewardUid { get; set; }
+    public string RewardUid { get; set; }
 
     [JsonProperty("to_user_uid")]
-    public required string ToUserUid { get; set; }
+    public string ToUserUid { get; set; }
   }
 
   public class Allocation
@@ -23,21 +23,21 @@ namespace OriginalSDK.Entities
     public double Amount { get; set; }
 
     [JsonProperty("created_at")]
-    public required string CreatedAt { get; set; }
+    public string CreatedAt { get; set; }
 
     [JsonProperty("nonce")]
-    public required string Nonce { get; set; }
+    public string Nonce { get; set; }
 
     [JsonProperty("reward_uid")]
-    public required string RewardUid { get; set; }
+    public string RewardUid { get; set; }
 
     [JsonProperty("status")]
-    public required string Status { get; set; }
+    public string Status { get; set; }
 
     [JsonProperty("to_user_uid")]
-    public required string ToUserUid { get; set; }
+    public string ToUserUid { get; set; }
 
     [JsonProperty("uid")]
-    public required string Uid { get; set; }
+    public string Uid { get; set; }
   }
 }

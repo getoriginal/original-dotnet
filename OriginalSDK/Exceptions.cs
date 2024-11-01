@@ -6,17 +6,17 @@ namespace OriginalSDK
 {
   public class ErrorDetail
   {
-    public required string Message { get; set; }
-    public required string Code { get; set; }
-    public string? FieldName { get; set; }
+    public string Message { get; set; }
+    public string Code { get; set; }
+    public string FieldName { get; set; }
   }
 
   public class Error
   {
-    public required string Type { get; set; }
+    public string Type { get; set; }
 
     [JsonConverter(typeof(ErrorDetailConverter))]
-    public required object Detail { get; set; }
+    public object Detail { get; set; }
 
     public Error()
     {
@@ -36,8 +36,8 @@ namespace OriginalSDK
     public bool IsSingleDetail => Detail is ErrorDetail;
     public bool IsDetailList => Detail is List<ErrorDetail>;
 
-    public ErrorDetail? GetSingleDetail() => Detail as ErrorDetail;
-    public List<ErrorDetail>? GetDetailList() => Detail as List<ErrorDetail>;
+    public ErrorDetail GetSingleDetail() => Detail as ErrorDetail;
+    public List<ErrorDetail> GetDetailList() => Detail as List<ErrorDetail>;
 
     public string GetMessage()
     {
@@ -57,7 +57,7 @@ namespace OriginalSDK
       return objectType == typeof(object);
     }
 
-    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
       if (value is ErrorDetail detail)
       {
@@ -73,7 +73,7 @@ namespace OriginalSDK
       }
     }
 
-    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
       var token = JToken.Load(reader);
       if (token.Type == JTokenType.Object)
@@ -91,7 +91,7 @@ namespace OriginalSDK
   public class OriginalErrorData
   {
     public bool Success { get; set; } = false;
-    public required Error Error { get; set; }
+    public Error Error { get; set; }
 
   }
 
@@ -141,7 +141,7 @@ namespace OriginalSDK
 
   public static class ErrorUtils
   {
-    public static void ParseAndRaiseError(OriginalErrorData? parsedResult, string reason, int status)
+    public static void ParseAndRaiseError(OriginalErrorData parsedResult, string reason, int status)
     {
       var result = parsedResult;
       var error = result?.Error;

@@ -1,4 +1,4 @@
-# Official Server-Side C# SDK for [Original](https://getoriginal.com) API
+# Official Server-Side C# .NET SDK for [Original API](https://getoriginal.com)
 
 ## Table of Contents
 
