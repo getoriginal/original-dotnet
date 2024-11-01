@@ -9,7 +9,6 @@
     <!-- NuGet package metadata -->
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>OriginalSDK</PackageId>
-    <Version>0.0.1</Version> <!-- Update with versioning strategy -->
     <Authors>Original</Authors>
     <Company>Original</Company>
     <Description>The official .NET SDK for the Original API.</Description>
