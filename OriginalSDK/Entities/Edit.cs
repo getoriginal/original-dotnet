@@ -5,27 +5,27 @@ namespace OriginalSDK.Entities
   public class EditAssetData
   {
     [JsonProperty("image_url")]
-    public required string ImageUrl { get; set; }
+    public string ImageUrl { get; set; }
 
     [JsonProperty("name")]
-    public required string Name { get; set; }
+    public string Name { get; set; }
 
     [JsonProperty("unique_name")]
     public bool UniqueName { get; set; }
 
     [JsonProperty("attributes")]
-    public List<AssetAttribute>? Attributes { get; set; }
+    public List<AssetAttribute> Attributes { get; set; }
 
     [JsonProperty("description")]
-    public string? Description { get; set; }
+    public string Description { get; set; }
 
     [JsonProperty("external_url")]
-    public string? ExternalUrl { get; set; }
+    public string ExternalUrl { get; set; }
   }
 
   public class EditAssetParams
   {
     [JsonProperty("data")]
-    public required EditAssetData Data { get; set; }
+    public EditAssetData Data { get; set; }
   }
 }

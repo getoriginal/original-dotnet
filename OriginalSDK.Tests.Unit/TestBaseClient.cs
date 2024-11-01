@@ -16,7 +16,7 @@ namespace OriginalSDK.Tests.Unit
 
     public class TestableBaseClient : BaseClient
     {
-      public TestableBaseClient(string? apiKey = null, string? apiSecret = null, OriginalOptions? options = null)
+      public TestableBaseClient(string apiKey = null, string apiSecret = null, OriginalOptions options = null)
           : base(apiKey, apiSecret, options) { }
 
       new public Task<ApiResponse<T>> GetAsync<T>(string endpoint) => base.GetAsync<T>(endpoint);
@@ -24,7 +24,7 @@ namespace OriginalSDK.Tests.Unit
       new public Task<ApiResponse<T>> PutAsync<T>(string endpoint, object data) => base.PutAsync<T>(endpoint, data);
       new public Task<ApiResponse<T>> PatchAsync<T>(string endpoint, object data) => base.PatchAsync<T>(endpoint, data);
       new public Task<ApiResponse<T>> DeleteAsync<T>(string endpoint) => base.DeleteAsync<T>(endpoint);
-      new public string GetBaseUrl(OriginalOptions? options) => base.GetBaseUrl(options);
+      new public string GetBaseUrl(OriginalOptions options) => base.GetBaseUrl(options);
     }
 
     private readonly TestableBaseClient _client;

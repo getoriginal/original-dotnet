@@ -4,7 +4,7 @@ This console application (`OriginalSDK.Tests.ConsoleApp`) is used to demonstrate
 
 ## Prerequisites
 
-- [.NET SDK 7.0](https://dotnet.microsoft.com/download/dotnet/7.0)
+- [.NET SDK 6.0](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [VS Code](https://code.visualstudio.com/)
 
 ## Setup Instructions

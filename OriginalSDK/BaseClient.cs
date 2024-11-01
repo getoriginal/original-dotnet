@@ -12,7 +12,7 @@ namespace OriginalSDK
     private const string DEVELOPMENT_URL = "https://api-dev.getoriginal.com/v1/";
     private const string PRODUCTION_URL = "https://api.getoriginal.com/v1/";
 
-    public BaseClient(string? apiKey = null, string? apiSecret = null, OriginalOptions? options = null)
+    public BaseClient(string apiKey = null, string apiSecret = null, OriginalOptions options = null)
     {
       apiKey ??= Environment.GetEnvironmentVariable("ORIGINAL_API_KEY");
       apiSecret ??= Environment.GetEnvironmentVariable("ORIGINAL_API_SECRET");
@@ -31,7 +31,7 @@ namespace OriginalSDK
       _httpClient.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
     }
 
-    protected string GetBaseUrl(OriginalOptions? options)
+    protected string GetBaseUrl(OriginalOptions options)
     {
       string baseUrl;
       if (options?.BaseUrl != null)

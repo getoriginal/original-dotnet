@@ -5,27 +5,27 @@ namespace OriginalSDK.Entities
   public class BurnParams
   {
     [JsonProperty("asset_uid")]
-    public required string AssetUid { get; set; }
+    public string AssetUid { get; set; }
 
     [JsonProperty("from_user_uid")]
-    public required string FromUserUid { get; set; }
+    public string FromUserUid { get; set; }
   }
 
   public class Burn
   {
     [JsonProperty("asset_uid")]
-    public required string AssetUid { get; set; }
+    public string AssetUid { get; set; }
 
     [JsonProperty("created_at")]
-    public required string CreatedAt { get; set; }
+    public string CreatedAt { get; set; }
 
     [JsonProperty("from_user_uid")]
-    public required string FromUserUid { get; set; }
+    public string FromUserUid { get; set; }
 
     [JsonProperty("status")]
-    public required string Status { get; set; }
+    public string Status { get; set; }
 
     [JsonProperty("uid")]
-    public required string Uid { get; set; }
+    public string Uid { get; set; }
   }
 }
