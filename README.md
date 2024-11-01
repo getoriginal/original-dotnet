@@ -50,6 +50,8 @@ dotnet add package OriginalSDK
 
 # Documentation
 
+For the full documentation, please refer to https://docs.getoriginal.com.
+
 ## Initialization
 
 The Original SDK provides access to API methods in a strongly typed manner.
@@ -59,7 +61,7 @@ For development environments:
 ```csharp
 using OriginalSDK;
 
-var client = new OriginalClient(
+OriginalClient client = new OriginalClient(
   apiKey: "YOUR_API_KEY",
   apiSecret: "YOUR_API_SECRET",
   options: new OriginalOptions { Environment = OriginalEnvironment.Development }
@@ -71,7 +73,7 @@ For production environments:
 ```csharp
 using OriginalSDK;
 
-var client = new OriginalClient(
+OriginalClient client = new OriginalClient(
   apiKey: "YOUR_API_KEY",
   apiSecret: "YOUR_API_SECRET",
   options: new OriginalOptions { Environment = OriginalEnvironment.Production }
@@ -93,7 +95,7 @@ ORIGINAL_ENVIRONMENT=development #(or production)
 
 ```csharp
 // Utilises environment variables
-var client = new OriginalClient();
+OriginalClient client = new OriginalClient();
 ```
 
 ## User
@@ -101,34 +103,80 @@ var client = new OriginalClient();
 ### Create a New User
 
 ```csharp
-var userParams = new UserParams
+UserParams userParams = new UserParams
 {
     UserExternalId = "YOUR_USER_EXTERNAL_ID",
     Email = "YOUR_EMAIL"
 };
-var response = await client.CreateUserAsync(userParams);
+ApiResponse<UidResponse> response = await client.CreateUserAsync(userParams);
 var userUid = response.Data.Uid;
+
+// Sample response
+new ApiResponse<UidResponse>
+{
+    Success = true,
+    Data = new UidResponse
+    {
+        Uid = "175324281338"
+    }
+};
 ```
 
 ### Get a User by UID
 
 ```csharp
-var response = await client.GetUserAsync("USER_UID");
+ApiResponse<User> response = await client.GetUserAsync("USER_UID");
 var userDetails = response.Data;
+
+// Sample response on success
+new ApiResponse<User>
+{
+    Success = true,
+    Data = new User
+    {
+        Uid = "754566475542",
+        UserExternalId = "user_external_id",
+        CreatedAt = DateTime.Parse("2024-02-26T13:12:31.798296Z"),
+        Email = "user_email@email.com",
+        WalletAddress = "0xa22f2dfe189ed3d16bb5bda5e5763b2919058e40",
+        Wallets = new List<Wallet>
+        {
+            new Wallet
+            {
+                Address = "0x1d6169328e0a2e0a0709115d1860c682cf8d1398",
+                ChainId = 80001,
+                ExplorerUrl = "https://amoy.polygonscan.com/address/0x1d6169328e0a2e0a0709115d1860c682cf8d1398",
+                Network = "Amoy"
+            }
+        }
+    }
+};
+
+// Sample response if user not found
+new ApiResponse<User>
+{
+    Success = false,
+    Data = null
+};
+
 ```
 
 ### Get a User by Email
 
 ```csharp
-var response = await client.GetUserByEmailAsync("YOUR_EMAIL");
+ApiResponse<User> response = await client.GetUserByEmailAsync("YOUR_EMAIL");
 var userDetails = response.Data;
+
+// Sample response - the same as "Get a User by UID" above
 ```
 
 ### Get a User by External ID
 
 ```csharp
-var response = await client.GetUserByUserExternalIdAsync("YOUR_USER_EXTERNAL_ID");
+ApiResponse<User> response = await client.GetUserByUserExternalIdAsync("YOUR_USER_EXTERNAL_ID");
 var userDetails = response.Data;
+
+// Sample response - the same as "Get a User by UID" above
 ```
 
 ## Asset
@@ -136,7 +184,7 @@ var userDetails = response.Data;
 ### Create a New Asset
 
 ```csharp
-var assetParams = new AssetParams
+AssetParams assetParams = new AssetParams
 {
     UserUid = "USER_UID",
     CollectionUid = "COLLECTION_UID",
@@ -154,21 +202,76 @@ var assetParams = new AssetParams
         }
     }
 };
-var response = await client.CreateAssetAsync(assetParams);
+ApiResponse<UidResponse> response = await client.CreateAssetAsync(assetParams);
 var assetUid = response.Data.Uid;
+
+// Sample response
+new ApiResponse<UidResponse>
+{
+    Success = true,
+    Data = new UidResponse
+    {
+        Uid = "151854912345"
+    }
+};
 ```
 
 ### Get an Asset by UID
 
 ```csharp
-var response = await client.GetAssetAsync("ASSET_UID");
+ApiResponse<Asset> response = await client.GetAssetAsync("ASSET_UID");
 var assetDetails = response.Data;
+
+// Sample response
+new ApiResponse<Asset>
+{
+    Success = true,
+    Data = new Asset
+    {
+        Uid = "151854912345",
+        Name = "Random Name #2",
+        AssetExternalId = "asset_external_id_1",
+        CollectionUid = "471616646163",
+        CollectionName = "Test SDK Collection 1",
+        TokenId = 2,
+        CreatedAt = DateTime.Parse("2024-02-16T11:33:19.577827Z"),
+        IsMinted = true,
+        IsBurned = false,
+        IsTransferring = false,
+        IsTransferable = true,
+        IsEditing = false,
+        MintForUserUid = "885810911461",
+        OwnerUserUid = "885810911461",
+        OwnerAddress = "0x32e28bfe647939d073d39113c697a11e3065ea97",
+        Metadata = new Metadata
+        {
+            Name = "Random Name",
+            Image = "https://cryptopunks.app/cryptopunks/cryptopunk1081.png",
+            Description = "nft_description",
+            OriginalId = "151854912345",
+            ExternalUrl = "external_url@example.com",
+            OrgImageUrl = "https://cryptopunks.app/cryptopunks/cryptopunk1081.png",
+            Attributes = new List<AssetAttribute>
+            {
+                new AssetAttribute
+                {
+                    TraitType = "Stamina Increase",
+                    DisplayType = "boost_percentage",
+                    Value = 10
+                }
+            }
+        },
+        ExplorerUrl = "https://mumbai.polygonscan.com/token/0x124a6755ee787153bb6228463d5dc3a02890a7db?a=2",
+        TokenUri = "https://storage.googleapis.com/original-production-media/data/metadata/9ac0dad4-75ae-4406-94fd-1a0f6bf75db3.json"
+    }
+};
+
 ```
 
 ### Edit an Asset
 
 ```csharp
-var editAssetParams = new EditAssetParams
+EditAssetParams editAssetParams = new EditAssetParams
 {
     Data = new EditAssetData
     {
@@ -181,8 +284,15 @@ var editAssetParams = new EditAssetParams
         }
     }
 };
-var response = await client.EditAssetAsync("ASSET_UID", editAssetParams);
+ApiResponse<object> response = await client.EditAssetAsync("ASSET_UID", editAssetParams);
 bool editSuccess = response.Success;
+
+// Sample response
+new ApiResponse<object>
+{
+    Success = true,
+    Data = null
+}
 ```
 
 ## Transfer
@@ -190,28 +300,74 @@ bool editSuccess = response.Success;
 ### Create a Transfer
 
 ```csharp
-var transferParams = new TransferParams
+TransferParams transferParams = new TransferParams
 {
     AssetUid = "ASSET_UID",
     FromUserUid = "FROM_USER_UID",
     ToAddress = "0xRecipientAddress"
 };
-var response = await client.CreateTransferAsync(transferParams);
+ApiResponse<UidResponse> response = await client.CreateTransferAsync(transferParams);
 var transferUid = response.Data.Uid;
+
+// Sample response
+new ApiResponse<UidResponse>
+{
+    Success = true,
+    Data = new UidResponse
+    {
+        Uid = "883072660397"
+    }
+};
 ```
 
 ### Get a Transfer by UID
 
 ```csharp
-var response = await client.GetTransferAsync("TRANSFER_UID");
+ApiResponse<Transfer> response = await client.GetTransferAsync("TRANSFER_UID");
 var transferDetails = response.Data;
+
+// Sample response
+new ApiResponse<Transfer>
+{
+    Success = true,
+    Data = new Transfer
+    {
+        Uid = "883072660397",
+        Status = "done",
+        AssetUid = "708469717542",
+        FromUserUid = "149997600351",
+        ToAddress = "0xe02522d0ac9f53e35a56f42cd5e54fc7b5a12f05",
+        CreatedAt = DateTime.Parse("2024-02-26T10:20:17.668254Z")
+    }
+};
 ```
 
 ### Get Transfers by User UID
 
 ```csharp
-var response = await client.GetTransfersByUserUidAsync("USER_UID");
+ApiResponse<List<Transfer>> response = await client.GetTransfersByUserUidAsync("USER_UID");
 var transferDetails = response.Data;
+
+// Sample response
+new ApiResponse<List<Transfer>>
+{
+    Success = true,
+    Data = new List<Transfer>
+    {
+        new Transfer
+        {
+            Uid = "883072660397",
+            Status = "done",
+            AssetUid = "708469717542",
+            FromUserUid = "149997600351",
+            ToAddress = "0xe02522d0ac9f53e35a56f42cd5e54fc7b5a12f05",
+            CreatedAt = DateTime.Parse("2024-02-26T10:20:17.668254Z")
+        },
+        new Transfer {
+          // ...
+        }
+    }
+};
 ```
 
 ## Burn
@@ -219,27 +375,72 @@ var transferDetails = response.Data;
 ### Create a Burn
 
 ```csharp
-var burnParams = new BurnParams
+BurnParams burnParams = new BurnParams
 {
     AssetUid = "ASSET_UID",
     FromUserUid = "USER_UID"
 };
-var response = await client.CreateBurnAsync(burnParams);
+ApiResponse<UidResponse> response = await client.CreateBurnAsync(burnParams);
 var burnUid = response.Data.Uid;
+
+// Sample response
+new ApiResponse<UidResponse>
+{
+    Success = true,
+    Data = new UidResponse
+    {
+        Uid = "365684656925"
+    }
+};
+
 ```
 
 ### Get a Burn by UID
 
 ```csharp
-var response = await client.GetBurnAsync("BURN_UID");
+ApiResponse<Burn> response = await client.GetBurnAsync("BURN_UID");
 var burnDetails = response.Data;
+
+// Sample response
+new ApiResponse<Burn>
+{
+    Success = true,
+    Data = new Burn
+    {
+        Uid = "365684656925",
+        Status = "done",
+        AssetUid = "708469717542",
+        FromUserUid = "483581848722",
+        CreatedAt = DateTime.Parse("2024-02-26T10:20:17.668254Z")
+    }
+};
 ```
 
 ### Get Burns by User UID
 
 ```csharp
-var response = await client.GetBurnsByUserUidAsync("USER_UID");
+ApiResponse<List<Burn>> response = await client.GetBurnsByUserUidAsync("USER_UID");
 var burnDetails = response.Data;
+
+// Sample response
+new ApiResponse<List<Burn>>
+{
+    Success = true,
+    Data = new List<Burn>
+    {
+        new Burn
+        {
+            Uid = "365684656925",
+            Status = "done",
+            AssetUid = "708469717542",
+            FromUserUid = "483581848722",
+            CreatedAt = DateTime.Parse("2024-02-26T10:20:17.668254Z")
+        },
+        {
+            //...
+        }
+    }
+};
 ```
 
 ## Deposit
@@ -247,8 +448,21 @@ var burnDetails = response.Data;
 ### Get Deposit Details by User and Collection
 
 ```csharp
-var response = await client.GetDepositAsync("USER_UID", "COLLECTION_UID");
+ApiResponse<Deposit> response = await client.GetDepositAsync("USER_UID", "COLLECTION_UID");
 var depositDetails = response.Data;
+
+// Sample response
+new ApiResponse<Deposit>
+{
+    Success = true,
+    Data = new Deposit
+    {
+        Network = "Mumbai",
+        ChainId = 80001,
+        WalletAddress = "0x1d6169328e0a2e0a0709115d1860c682cf8d1398",
+        QrCodeData = "ethereum:0x1d6169328e0a2e0a0709115d1860c682cf8d1398@80001"
+    }
+};
 ```
 
 ## Collection
@@ -256,8 +470,27 @@ var depositDetails = response.Data;
 ### Get a Collection by UID
 
 ```csharp
-var response = await client.GetCollectionAsync("COLLECTION_UID");
+ApiResponse<Collection> response = await client.GetCollectionAsync("COLLECTION_UID");
 var collectionDetails = response.Data;
+
+// Sample response
+new ApiResponse<Collection>
+{
+    Success = true,
+    Data = new Collection
+    {
+        Uid = "221137489875",
+        Name = "Test SDK Collection 1",
+        Status = "deployed",
+        Type = "ERC721",
+        CreatedAt = DateTime.Parse("2024-02-13T10:45:56.952745Z"),
+        EditableAssets = true,
+        ContractAddress = "0x124a6755ee787153bb6228463d5dc3a02890a7db",
+        Symbol = "SYM",
+        Description = "Description of the collection",
+        ExplorerUrl = "https://mumbai.polygonscan.com/address/0x124a6755ee787153bb6228463d5dc3a02890a7db"
+    }
+};
 ```
 
 ## Reward
@@ -265,8 +498,27 @@ var collectionDetails = response.Data;
 ### Get a Reward by UID
 
 ```csharp
-var response = await client.GetRewardAsync("REWARD_UID");
+ApiResponse<Reward> response = await client.GetRewardAsync("REWARD_UID");
 var rewardDetails = response.Data;
+
+// Sample response
+new ApiResponse<Reward>
+{
+    Success = true,
+    Data = new Reward
+    {
+        Uid = "151854912345",
+        Name = "Test SDK Reward 1",
+        Status = "deployed",
+        TokenType = "ERC20",
+        TokenName = "TestnetORI",
+        CreatedAt = DateTime.Parse("2024-02-13T10:45:56.952745Z"),
+        ContractAddress = "0x124a6755ee787153bb6228463d5dc3a02890a7db",
+        WithdrawReceiver = "0x4881ab2f73c48a54b907a8b697b270f490768e6d",
+        Description = "Description of the reward",
+        ExplorerUrl = "https://mumbai.polygonscan.com/address/0x124a6755ee787153bb6228463d5dc3a02890a7db"
+    }
+};
 ```
 
 ## Allocation
@@ -274,29 +526,73 @@ var rewardDetails = response.Data;
 ### Create a New Allocation
 
 ```csharp
-var allocationParams = new AllocationParams
+AllocationParams allocationParams = new AllocationParams
 {
     Amount = 100,
     Nonce = "random_nonce",
     RewardUid = "REWARD_UID",
     ToUserUid = "USER_UID"
 };
-var response = await client.CreateAllocationAsync(allocationParams);
+ApiResponse<UidResponse> response = await client.CreateAllocationAsync(allocationParams);
 var allocationUid = response.Data.Uid;
+
+// Sample response
+new ApiResponse<UidResponse>
+{
+    Success = true,
+    Data = new UidResponse
+    {
+        Uid = "151854912345"
+    }
+};
 ```
 
 ### Get an Allocation by UID
 
 ```csharp
-var response = await client.GetAllocationAsync("ALLOCATION_UID");
+ApiResponse<Allocation> response = await client.GetAllocationAsync("ALLOCATION_UID");
 var allocationDetails = response.Data;
+
+// Sample response
+new ApiResponse<Allocation>
+{
+    Success = true,
+    Data = new Allocation
+    {
+        Uid = "151854912345",
+        Status = "done",
+        RewardUid = "reward_uid",
+        ToUserUid = "754566475542",
+        Amount = 123.123,
+        Nonce = "nonce1",
+        CreatedAt = DateTime.Parse("2024-02-16T11:33:19.577827Z")
+    }
+};
 ```
 
 ### Get Allocations by User UID
 
 ```csharp
-var response = await client.GetAllocationsByUserUidAsync("USER_UID");
+ApiResponse<List<Allocation>> response = await client.GetAllocationsByUserUidAsync("USER_UID");
 var allocationDetails = response.Data;
+
+// Sample response
+new ApiResponse<List<Allocation>>
+{
+    Success = true,
+    Data = new List<Allocation>
+    {
+        new Allocation {
+            Uid = "151854912345",
+            Status = "done",
+            RewardUid = "reward_uid",
+            ToUserUid = "754566475542",
+            Amount = 123.123,
+            Nonce = "nonce1",
+            CreatedAt = DateTime.Parse("2024-02-16T11:33:19.577827Z")
+        }
+    }
+};
 ```
 
 ## Claim
@@ -304,28 +600,74 @@ var allocationDetails = response.Data;
 ### Create a New Claim
 
 ```csharp
-var claimParams = new ClaimParams
+ClaimParams claimParams = new ClaimParams
 {
     FromUserUid = "USER_UID",
     RewardUid = "REWARD_UID",
     ToAddress = "0xRecipientAddress"
 };
-var response = await client.CreateClaimAsync(claimParams);
+ApiResponse<UidResponse> response = await client.CreateClaimAsync(claimParams);
 var claimUid = response.Data.Uid;
+
+// Sample response
+new ApiResponse<UidResponse>
+{
+    Success = true,
+    Data = new UidResponse
+    {
+        Uid = "151854912345"
+    }
+};
 ```
 
 ### Get a Claim by UID
 
 ```csharp
-var response = await client.GetClaimAsync("CLAIM_UID");
+ApiResponse<Claim> response = await client.GetClaimAsync("CLAIM_UID");
 var claimDetails = response.Data;
+
+// Sample response
+new ApiResponse<Claim>
+{
+    Success = true,
+    Data = new Claim
+    {
+        Uid = "151854912345",
+        Status = "done",
+        RewardUid = "708469717542",
+        FromUserUid = "754566475542",
+        ToAddress = "0x4881ab2f73c48a54b907a8b697b270f490768e6d",
+        Amount = 123.123,
+        CreatedAt = DateTime.Parse("2024-02-16T11:33:19.577827Z")
+    }
+};
+
 ```
 
 ### Get Claims by User UID
 
 ```csharp
-var response = await client.GetClaimsByUserUidAsync("USER_UID");
+ApiResponse<List<Claim>> response = await client.GetClaimsByUserUidAsync("USER_UID");
 var claimDetails = response.Data;
+
+// Sample response
+new ApiResponse<List<Claim>>
+{
+    Success = true,
+    Data = new List<Claim>
+    {
+        new Claim {
+            Uid = "151854912345",
+            Status = "done",
+            RewardUid = "708469717542",
+            FromUserUid = "754566475542",
+            ToAddress = "0x4881ab2f73c48a54b907a8b697b270f490768e6d",
+            Amount = 123.123,
+            CreatedAt = DateTime.Parse("2024-02-16T11:33:19.577827Z")
+        }
+    }
+};
+
 ```
 
 ## Balance
@@ -333,8 +675,20 @@ var claimDetails = response.Data;
 ### Get Reward Balance by User UID
 
 ```csharp
-var response = await client.GetBalanceAsync("REWARD_UID", "USER_UID");
+ApiResponse<Balance> response = await client.GetBalanceAsync("REWARD_UID", "USER_UID");
 var balanceData = response.Data;
+
+// Sample response
+new ApiResponse<Balance>
+{
+    Success = true,
+    Data = new Balance
+    {
+        RewardUid = "151854912345",
+        UserUid = "754566475542",
+        Amount = 123.123
+    }
+};
 ```
 
 ## Handling Errors
