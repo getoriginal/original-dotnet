@@ -88,12 +88,12 @@ namespace OriginalSDK.Tests.ConsoleApp
 
     static async Task TestCreateUserAsync(OriginalClient client)
     {
-      var userParams = new UserParams
+      UserParams userParams = new UserParams
       {
         Email = "newuser1@example.com",
         UserExternalId = "user_external_id_1"
       };
-      var response = await client.CreateUserAsync(userParams);
+      ApiResponse<UidResponse> response = await client.CreateUserAsync(userParams);
       Console.WriteLine("CreateUserAsync:");
       Console.WriteLine($"New User UID: {response.Data.Uid}");
       Console.WriteLine($"Success: {response.Success}\n");
@@ -102,7 +102,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetUserAsync(OriginalClient client)
     {
       var userUid = "147980339890";
-      var response = await client.GetUserAsync(userUid);
+      ApiResponse<User> response = await client.GetUserAsync(userUid);
       Console.WriteLine("GetUserAsync:");
       Console.WriteLine($"Email: {response.Data.Email}");
       Console.WriteLine($"UID: {response.Data.Uid}");
@@ -114,7 +114,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetUserByEmailAsync(OriginalClient client)
     {
       var email = "newuser1@example.com";
-      var response = await client.GetUserByEmailAsync(email);
+      ApiResponse<User> response = await client.GetUserByEmailAsync(email);
       Console.WriteLine("GetUserByEmailAsync:");
       Console.WriteLine($"Email: {response.Data?.Email}");
       Console.WriteLine($"UID: {response.Data?.Uid}");
@@ -124,7 +124,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetUserByUserExternalIdAsync(OriginalClient client)
     {
       var userExternalId = "user_external_id_1";
-      var response = await client.GetUserByUserExternalIdAsync(userExternalId);
+      ApiResponse<User> response = await client.GetUserByUserExternalIdAsync(userExternalId);
       Console.WriteLine("GetUserByUserExternalIdAsync:");
       Console.WriteLine($"Email: {response.Data?.Email}");
       Console.WriteLine($"UID: {response.Data?.Uid}");
@@ -134,7 +134,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetCollectionAsync(OriginalClient client)
     {
       var collectionUid = "940830618348";
-      var response = await client.GetCollectionAsync(collectionUid);
+      ApiResponse<Collection> response = await client.GetCollectionAsync(collectionUid);
       Console.WriteLine("GetCollectionAsync:");
       Console.WriteLine($"Chain: {response.Data.Chain}");
       Console.WriteLine($"Chain ID: {response.Data.ChainId}");
@@ -155,7 +155,7 @@ namespace OriginalSDK.Tests.ConsoleApp
 
     static async Task TestCreateAssetAsync(OriginalClient client)
     {
-      var assetParams = new AssetParams
+      AssetParams assetParams = new AssetParams
       {
         UserUid = "147980339890",
         CollectionUid = "940830618348",
@@ -173,7 +173,7 @@ namespace OriginalSDK.Tests.ConsoleApp
                 }
         }
       };
-      var response = await client.CreateAssetAsync(assetParams);
+      ApiResponse<UidResponse> response = await client.CreateAssetAsync(assetParams);
       Console.WriteLine("CreateAssetAsync:");
       Console.WriteLine($"New Asset UID: {response.Data.Uid}");
       Console.WriteLine($"Success: {response.Success}\n");
@@ -182,7 +182,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetAssetAsync(OriginalClient client)
     {
       var assetUid = "373337353781";
-      var response = await client.GetAssetAsync(assetUid);
+      ApiResponse<Asset> response = await client.GetAssetAsync(assetUid);
       Console.WriteLine("GetAssetAsync:");
       Console.WriteLine($"AssetExternalId: {response.Data.AssetExternalId}");
       Console.WriteLine($"Collection Name: {response.Data.CollectionName}");
@@ -223,7 +223,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetAssetsByUserUidAsync(OriginalClient client)
     {
       var userUid = "147980339890";
-      var response = await client.GetAssetsByUserUidAsync(userUid);
+      ApiResponse<List<Asset>> response = await client.GetAssetsByUserUidAsync(userUid);
       Console.WriteLine("GetAssetsByUserUidAsync:");
       foreach (var asset in response.Data)
       {
@@ -234,7 +234,7 @@ namespace OriginalSDK.Tests.ConsoleApp
 
     static async Task TestEditAssetAsync(OriginalClient client)
     {
-      var editParams = new EditAssetParams
+      EditAssetParams editParams = new EditAssetParams
       {
         Data = new EditAssetData
         {
@@ -249,20 +249,20 @@ namespace OriginalSDK.Tests.ConsoleApp
         }
       };
       var assetUid = "373337353781";
-      var response = await client.EditAssetAsync(assetUid, editParams);
+      ApiResponse<object> response = await client.EditAssetAsync(assetUid, editParams);
       Console.WriteLine("EditAssetAsync:");
       Console.WriteLine($"Success: {response.Success}\n");
     }
 
     static async Task TestCreateTransferAsync(OriginalClient client)
     {
-      var transferParams = new TransferParams
+      TransferParams transferParams = new TransferParams
       {
         AssetUid = "373337353781",
         FromUserUid = "147980339890",
         ToAddress = "61SrkpNh7BE7S8ZLqVY5JXm4JU7Rm1EaqRMkaJV8XW5R"
       };
-      var response = await client.CreateTransferAsync(transferParams);
+      ApiResponse<UidResponse> response = await client.CreateTransferAsync(transferParams);
       Console.WriteLine("CreateTransferAsync:");
       Console.WriteLine($"New Transfer UID: {response.Data.Uid}");
       Console.WriteLine($"Success: {response.Success}\n");
@@ -271,7 +271,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetTransferAsync(OriginalClient client)
     {
       var transferUid = "885359965902";
-      var response = await client.GetTransferAsync(transferUid);
+      ApiResponse<Transfer> response = await client.GetTransferAsync(transferUid);
       Console.WriteLine("GetTransferAsync:");
       Console.WriteLine($"Transfer UID: {response.Data.Uid}");
       Console.WriteLine($"From User UID: {response.Data.FromUserUid}");
@@ -283,7 +283,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetTransfersByUserUidAsync(OriginalClient client)
     {
       var userUid = "147980339890";
-      var response = await client.GetTransfersByUserUidAsync(userUid);
+      ApiResponse<List<Transfer>> response = await client.GetTransfersByUserUidAsync(userUid);
       Console.WriteLine("GetTransfersByUserUidAsync:");
       foreach (var transfer in response.Data)
       {
@@ -299,12 +299,12 @@ namespace OriginalSDK.Tests.ConsoleApp
 
     static async Task TestCreateBurnAsync(OriginalClient client)
     {
-      var burnParams = new BurnParams
+      BurnParams burnParams = new BurnParams
       {
         AssetUid = "373337353781",
         FromUserUid = "364718224260"
       };
-      var response = await client.CreateBurnAsync(burnParams);
+      ApiResponse<UidResponse> response = await client.CreateBurnAsync(burnParams);
       Console.WriteLine("CreateBurnAsync:");
       Console.WriteLine($"New Burn UID: {response.Data.Uid}");
       Console.WriteLine($"Success: {response.Success}\n");
@@ -313,7 +313,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetBurnAsync(OriginalClient client)
     {
       var burnUid = "662859149573";
-      var response = await client.GetBurnAsync(burnUid);
+      ApiResponse<Burn> response = await client.GetBurnAsync(burnUid);
       Console.WriteLine("GetBurnAsync:");
       Console.WriteLine($"Asset UID: {response.Data.AssetUid}");
       Console.WriteLine($"Created At: {response.Data.CreatedAt}");
@@ -326,7 +326,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetBurnsByUserUidAsync(OriginalClient client)
     {
       var userUid = "364718224260";
-      var response = await client.GetBurnsByUserUidAsync(userUid);
+      ApiResponse<List<Burn>> response = await client.GetBurnsByUserUidAsync(userUid);
       Console.WriteLine("GetBurnsByUserUidAsync:");
       foreach (var burn in response.Data)
       {
@@ -343,7 +343,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     {
       var userUid = "147980339890";
       var collection_uid = "940830618348";
-      var response = await client.GetDepositAsync(userUid, collection_uid);
+      ApiResponse<Deposit> response = await client.GetDepositAsync(userUid, collection_uid);
       Console.WriteLine("GetDepositAsync:");
       Console.WriteLine($"QR Code Data: {response.Data.QrCodeData}");
       Console.WriteLine($"Wallet Address: {response.Data.WalletAddress}");
@@ -355,7 +355,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetRewardAsync(OriginalClient client)
     {
       var rewardUid = "501676762240";
-      var response = await client.GetRewardAsync(rewardUid);
+      ApiResponse<Reward> response = await client.GetRewardAsync(rewardUid);
       Console.WriteLine("GetRewardAsync:");
       Console.WriteLine($"Contract Address: {response.Data.ContractAddress}");
       Console.WriteLine($"Created At: {response.Data.CreatedAt}");
@@ -376,14 +376,14 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestCreateAllocationAsync(OriginalClient client)
     {
       var randomNonce = new Random().Next(100000, 999999);
-      var allocationParams = new AllocationParams
+      AllocationParams allocationParams = new AllocationParams
       {
         Amount = 0.1,
         Nonce = $"{randomNonce}",
         RewardUid = "501676762240",
         ToUserUid = "654716880029"
       };
-      var response = await client.CreateAllocationAsync(allocationParams);
+      ApiResponse<UidResponse> response = await client.CreateAllocationAsync(allocationParams);
       Console.WriteLine("CreateAllocationAsync:");
       Console.WriteLine($"New Allocation UID: {response.Data.Uid}");
       Console.WriteLine($"Success: {response.Success}\n");
@@ -392,7 +392,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetAllocationAsync(OriginalClient client)
     {
       var allocationUid = "529168034396";
-      var response = await client.GetAllocationAsync(allocationUid);
+      ApiResponse<Allocation> response = await client.GetAllocationAsync(allocationUid);
       Console.WriteLine("GetAllocationAsync:");
       Console.WriteLine($"Amount: {response.Data.Amount}");
       Console.WriteLine($"Created At: {response.Data.CreatedAt}");
@@ -407,7 +407,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetAllocationsByUserUidAsync(OriginalClient client)
     {
       var userUid = "654716880029";
-      var response = await client.GetAllocationsByUserUidAsync(userUid);
+      ApiResponse<List<Allocation>> response = await client.GetAllocationsByUserUidAsync(userUid);
       Console.WriteLine("GetAllocationsByUserUidAsync:");
       foreach (var allocation in response.Data)
       {
@@ -424,13 +424,13 @@ namespace OriginalSDK.Tests.ConsoleApp
 
     static async Task TestCreateClaimAsync(OriginalClient client)
     {
-      var claimParams = new ClaimParams
+      ClaimParams claimParams = new ClaimParams
       {
         FromUserUid = "654716880029",
         RewardUid = "501676762240",
         ToAddress = "0x79998F1C1eA7d58Ee70dc0301db3e1370F2f1e90"
       };
-      var response = await client.CreateClaimAsync(claimParams);
+      ApiResponse<UidResponse> response = await client.CreateClaimAsync(claimParams);
       Console.WriteLine("CreateClaimAsync:");
       Console.WriteLine($"New Claim UID: {response.Data.Uid}");
       Console.WriteLine($"Success: {response.Success}\n");
@@ -439,7 +439,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetClaimAsync(OriginalClient client)
     {
       var claimUid = "227092682937";
-      var response = await client.GetClaimAsync(claimUid);
+      ApiResponse<Claim> response = await client.GetClaimAsync(claimUid);
       Console.WriteLine("GetClaimAsync:");
       Console.WriteLine($"Amount: {response.Data.Amount}");
       Console.WriteLine($"Created At: {response.Data.CreatedAt}");
@@ -454,7 +454,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     static async Task TestGetClaimsByUserUidAsync(OriginalClient client)
     {
       var userUid = "144745202401";
-      var response = await client.GetClaimsByUserUidAsync(userUid);
+      ApiResponse<List<Claim>> response = await client.GetClaimsByUserUidAsync(userUid);
       Console.WriteLine("GetClaimsByUserUidAsync:");
       foreach (var claim in response.Data)
       {
@@ -473,7 +473,7 @@ namespace OriginalSDK.Tests.ConsoleApp
     {
       var rewardUid = "501676762240";
       var userUid = "654716880029";
-      var response = await client.GetBalanceAsync(rewardUid, userUid);
+      ApiResponse<Balance> response = await client.GetBalanceAsync(rewardUid, userUid);
       Console.WriteLine("TestGetBalanceAsync:");
       Console.WriteLine($"Amount: {response.Data.Amount}");
       Console.WriteLine($"Reward UID: {response.Data.RewardUid}");
