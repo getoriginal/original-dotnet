@@ -18,11 +18,6 @@
     <PackageTags>Original;API;SDK</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 
-    <!-- Use GitVersioning for dynamic versioning -->
-    <Version>$(GitVersion_NuGetVersionV2)</Version>
-    <AssemblyVersion>$(GitVersion_AssemblySemVer)</AssemblyVersion>
-    <FileVersion>$(GitVersion_AssemblySemFileVer)</FileVersion>
-
     <!-- Icon metadata -->
     <PackageIcon>assets/icon.png</PackageIcon>
   </PropertyGroup>
