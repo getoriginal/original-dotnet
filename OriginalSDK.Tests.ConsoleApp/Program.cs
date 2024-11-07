@@ -202,6 +202,7 @@ namespace OriginalSDK.Tests.ConsoleApp
       Console.WriteLine($"Token Address: {response.Data.TokenAddress}");
       Console.WriteLine($"Token ID: {response.Data.TokenId}");
       Console.WriteLine($"Token URI: {response.Data.TokenUri}");
+      Console.WriteLine($"Sale Price In USD: {response.Data.SalePriceInUsd}");
       Console.WriteLine($"UID: {response.Data.Uid}");
       Console.WriteLine($"Metadata Attributes: {response.Data.Metadata.Attributes?.Count}");
       if (response.Data.Metadata.Attributes != null)

@@ -135,11 +135,13 @@ namespace OriginalSDK.Entities
     [JsonProperty("owner_user_uid")]
     public string OwnerUserUid { get; set; }
 
+    [JsonProperty("sale_price_in_usd")]
+    public string SalePriceInUsd { get; set; }
+
     [JsonProperty("token_uri")]
     public string TokenUri { get; set; }
 
     [JsonProperty("token_address")]
     public string TokenAddress { get; set; }
   }
-
 }
